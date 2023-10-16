@@ -12,6 +12,8 @@ from accounts.utils import detectuser, send_verification_email
 from vendor.forms import VendorForm
 from django.contrib.auth.decorators import PermissionDenied, user_passes_test
 
+from vendor.models import Vendor
+
 
 # Create your views here.
 
@@ -34,7 +36,7 @@ def check_role_customer(user):
 def registerUser(request):
     if request.user.is_authenticated:
         messages.warning(request, "You are already logged in!")
-        return redirect('dashboard')
+        return redirect('myAccount')
     elif request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
