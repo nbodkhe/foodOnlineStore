@@ -30,7 +30,8 @@ def send_verification_email(request, user, mail_subject, email_template):
         'token': default_token_generator.make_token(user),
     })
     to_email = user.email
-
+    mail = EmailMessage(mail_subject, message, from_email, to=[to_email])  # Correct the from_email parameter
+    # mail = EmailMessage(mail_subject, from_email, message, to=[to_email])
     mail.send()
 
 
@@ -38,5 +39,5 @@ def send_notification(mail_subject, mail_template, context):
     from_email = settings.DEFAULT_FROM_EMAIL
     message = render_to_string(mail_template, context)
     to_email = context['user'].email
-    mail = EmailMessage(mail_subject, message, from_email, to=[to_email])
+    mail = EmailMessage(mail_subject, from_email, message, to=[to_email])
     mail.send()

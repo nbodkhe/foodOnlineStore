@@ -40,13 +40,6 @@ def registerUser(request):
     elif request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
-            # Create the user using the form
-            # password = form.cleaned_data['password']
-            # user = form.save(commit=False)
-            # user.role = User.CUSTOMER
-            # user.set_password(password)
-            # user.save()
-
             # Create user using user method
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
@@ -60,7 +53,7 @@ def registerUser(request):
 
             # send verification email
             mail_subject = 'Please activate your account.'
-            email_template = 'accounts/emails./accounts_verification_email.html'
+            email_template = 'accounts/emails/accounts_verification_email.html'
             send_verification_email(request, user, mail_subject, email_template)
             messages.success(request, 'Your account has been registered successfully')
             return redirect('registerUser')  # return redirect('registerUser') already hoti hi
@@ -101,7 +94,7 @@ def registerVendor(request):
 
             # send verification email
             mail_subject = 'Please activate your account.'
-            email_template = 'accounts/emails./accounts_verification_email.html'
+            email_template = 'accounts/emails/accounts_verification_email.html'
             send_verification_email(request, user, mail_subject, email_template)
 
             messages.success(request, 'Your account has been registered successfully Please wait for approval.')
