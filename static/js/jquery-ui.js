@@ -17465,7 +17465,3 @@ var effectsEffectTransfer = effect;
 
 
 }));
-
-
-
-
